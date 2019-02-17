@@ -80,7 +80,7 @@ func Parse(b []byte) (u *UUID, err error) {
 	return
 }
 
-// Generate a UUID based on the MD5 hash of a namespace identifier
+// NewV3: Generate a UUID based on the MD5 hash of a namespace identifier
 // and a name.
 func NewV3(ns *UUID, name []byte) (u *UUID, err error) {
 	if ns == nil {
@@ -95,7 +95,7 @@ func NewV3(ns *UUID, name []byte) (u *UUID, err error) {
 	return
 }
 
-// Generate a random UUID.
+// NewV4: Generate a random UUID.
 func NewV4() (u *UUID, err error) {
 	u = new(UUID)
 	// Set all bits to randomly (or pseudo-randomly) chosen values.
@@ -108,7 +108,7 @@ func NewV4() (u *UUID, err error) {
 	return
 }
 
-// Generate a UUID based on the SHA-1 hash of a namespace identifier
+// NewV5: Generate a UUID based on the SHA-1 hash of a namespace identifier
 // and a name.
 func NewV5(ns *UUID, name []byte) (u *UUID, err error) {
 	u = new(UUID)
@@ -167,7 +167,7 @@ func (u *UUID) Version() uint {
 	return uint(u[6] >> 4)
 }
 
-// Returns unparsed version of the generated UUID sequence.
+// String returns unparsed version of the generated UUID sequence.
 func (u *UUID) String() string {
 	return fmt.Sprintf("%x-%x-%x-%x-%x", u[0:4], u[4:6], u[6:8], u[8:10], u[10:])
 }
